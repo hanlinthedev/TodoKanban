@@ -16,24 +16,20 @@ const Button = ({
 	type = "button",
 	disabled = false,
 }: Props) => {
-	const color = () => {
-		switch (variant) {
-			case "primary":
-				return "border bg-blue-500 text-white hover:bg-blue-600";
-			case "danger":
-				return "bg-red-500 text-white hover:bg-red-600";
-			case "secondary":
-				return "bg-gray-500 text-white hover:bg-gray-600";
-			default:
-				return "border inset border-gray-500 text-black hover:bg-gray-600 hover:text-white";
-		}
+	const color: Record<Variant, string> = {
+		primary: " bg-blue-500 text-white hover:bg-blue-600",
+		danger: "bg-red-500 text-white hover:bg-red-600",
+		secondary: "bg-gray-500 text-white hover:bg-gray-600",
+		outline:
+			"border inset border-gray-500 text-black hover:bg-gray-600 hover:text-white",
 	};
+
 	return (
 		<button
 			onClick={onClick}
 			disabled={disabled}
 			type={type}
-			className={`min-w-32 flex justify-center items-center gap-2 disabled:cursor-not-allowed cursor-pointer ${color()}  rounded-xl px-4 py-2 `}
+			className={`min-w-32 flex justify-center items-center gap-2 disabled:cursor-not-allowed cursor-pointer ${color[variant]}  rounded-xl px-4 py-2 `}
 		>
 			{children}
 		</button>

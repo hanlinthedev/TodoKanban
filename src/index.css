@@ -4,6 +4,22 @@
 	box-sizing: border-box;
 }
 
+body {
+	background-color: #d1d5dc;
+}
+
 .container-padding {
 	@apply py-2 px-4;
+}
+
+@media (max-width: 640px) {
+	.kanban-column-height {
+		max-height: 10vh;
+	}
+}
+
+@media (max-width: 1024px) {
+	.kanban-column-height {
+		max-height: 50vh;
+	}
 }
