@@ -1,10 +1,9 @@
 import { ArrowUpFromLine, CheckCheck, Trash } from "lucide-react";
 import { useState } from "react";
+import { DeleteTodo, UpdateTodo } from ".";
 import type { Todo } from "../../../shared/types";
 import { changeToLocaleDateString } from "../../../shared/utils";
 import { useTodos } from "../hooks/useTodos";
-import DeleteTodo from "./DeleteTodo";
-import UpdateTodo from "./UpdateTodo";
 
 type Props = {
 	todo: Todo;
@@ -26,7 +25,11 @@ const TodoCard = ({ todo }: Props) => {
 				<Trash
 					size={18}
 					className="cursor-pointer hover:scale-105"
-					onClick={() => setShowDeleteTodoModal(true)}
+					onClick={(e) => {
+						e.stopPropagation();
+						e.preventDefault();
+						setShowDeleteTodoModal(true);
+					}}
 				/>
 				<DeleteTodo
 					isOpen={showDeleteTodoModal}

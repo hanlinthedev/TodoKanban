@@ -17,7 +17,10 @@ const UpdateTodo = ({ oldTodo }: Props) => {
 			<Pencil
 				size={18}
 				className="cursor-pointer hover:scale-105"
-				onClick={() => setShowModal(true)}
+				onClick={(e) => {
+					e.stopPropagation();
+					setShowModal(true);
+				}}
 			/>
 			<TodoFormModal
 				isOpen={showModal}
