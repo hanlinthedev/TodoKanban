@@ -49,9 +49,14 @@ const KanBanColumn = ({ status, className }: Props) => {
 				{status !== "done" && <FilterBtn onClick={setFilterBy} />}
 			</div>
 			<div
-				className="space-y-2 py-2 max-h-[28vh] sm:max-h-[50vh] lg:max-h-[90vh] min-h-[10vh] overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
+				className="space-y-2 py-2 max-h-[28vh] sm:max-h-[50vh] lg:max-h-[90vh] min-h-[10vh] overflow-auto"
 				ref={setNodeRef}
 			>
+				{todos.length === 0 && (
+					<div className="text-center text-gray-500 py-4">
+						Nothing To See Here!!
+					</div>
+				)}
 				{getFilteredTodos().map((todo) => (
 					<Draggable key={todo.id} todo={todo} />
 				))}
