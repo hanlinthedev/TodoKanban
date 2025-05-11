@@ -1,24 +1,21 @@
-import { useState } from "react";
-import Button from "../../../shared/components/Button";
 import { addIdAndStatus } from "../../../shared/utils";
 import { useTodos } from "../hooks/useTodos";
-import TodoFormModal from "./TodoForm";
+import TodoForm from "./TodoForm";
+import TodoModal from "./TodoModal";
 
 const AddTodo = () => {
-	const [showModal, setShowModal] = useState(false);
 	const { addTodoFn } = useTodos();
 
 	return (
-		<>
-			<Button onClick={() => setShowModal(true)}>Add Todo</Button>
-			<TodoFormModal
-				isOpen={showModal}
-				onClose={() => setShowModal(false)}
-				modalTitle="Add New Todo"
-				confirmButtonLabel="Add"
-				onSubmit={(todo) => addTodoFn(addIdAndStatus(todo))}
-			/>
-		</>
+		<TodoModal modalTriggerText="Add Todo" modalTitle="Create New Todo">
+			{(closeModal) => (
+				<TodoForm
+					confirmButtonLabel="Add"
+					onSubmit={(todo) => addTodoFn(addIdAndStatus(todo))}
+					closeModal={closeModal}
+				/>
+			)}
+		</TodoModal>
 	);
 };
 

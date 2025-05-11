@@ -41,17 +41,14 @@ const KanBanColumn = ({ status, className }: Props) => {
 	};
 
 	return (
-		<div className={`w-full ${className}`}>
+		<div className={`w-full ${className}`} ref={setNodeRef}>
 			<div
 				className={`w-full p-4 shadow  flex justify-between items-center rounded-xl  bg-blue-400 `}
 			>
 				<h1 className="text-lg text-gray-600">{TodoStatusLabel[status]}</h1>
 				{status !== "done" && <FilterBtn onClick={setFilterBy} />}
 			</div>
-			<div
-				className="space-y-2 py-2 max-h-[28vh] sm:max-h-[50vh] lg:max-h-[90vh] min-h-[10vh] overflow-auto"
-				ref={setNodeRef}
-			>
+			<div className="space-y-2 py-2 max-h-[28vh] sm:max-h-[50vh] lg:max-h-[90vh] min-h-[10vh] overflow-auto">
 				{todos.length === 0 && (
 					<div className="text-center text-gray-500 py-4">
 						Nothing To See Here!!

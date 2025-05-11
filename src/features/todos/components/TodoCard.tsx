@@ -12,7 +12,7 @@ type Props = {
 };
 const TodoCard = ({ todo, listeners, attributes }: Props) => {
 	return (
-		<div className="border-blue-400 text-gray-600 bg-blue-300  rounded-xl border flex px-3 justify-between items-start py-2 transition group relative">
+		<div className="border-blue-400 text-gray-600 bg-blue-300 hover:bg-gradient-to-tr from-blue-200 to-blue-300  rounded-xl border flex px-3 justify-between items-start py-2 transition group relative">
 			<div>
 				<h1>{todo.title}</h1>
 				<p className=" hidden group-hover:block  text-sm">{todo.description}</p>

@@ -1,29 +1,20 @@
 import { useState, type ChangeEvent } from "react";
 import Button from "../../../shared/components/Button";
 import Input from "../../../shared/components/Input";
-import {
-	Modal,
-	ModalHeader,
-	ModalTitle,
-} from "../../../shared/components/Modal";
 import type { Todo } from "../../../shared/types";
 
 type Props = {
-	isOpen: boolean;
-	onClose: () => void;
 	onSubmit: (todo: NewTodo) => void;
-	modalTitle: string;
+	closeModal: () => void;
 	confirmButtonLabel: string;
 	initialData?: NewTodo;
 };
 
 type NewTodo = Omit<Todo, "id" | "status">;
 
-const TodoFormModal = ({
-	isOpen,
-	onClose,
+const TodoForm = ({
 	onSubmit,
-	modalTitle,
+	closeModal,
 	confirmButtonLabel,
 	initialData = {
 		title: "",
@@ -43,47 +34,42 @@ const TodoFormModal = ({
 
 	const handleSubmit = () => {
 		onSubmit(newTodo);
-		onClose();
+		closeModal();
 		setNewTodo(initialData);
 	};
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose}>
-			<ModalHeader>
-				<ModalTitle>{modalTitle}</ModalTitle>
-			</ModalHeader>
-			<form className="flex flex-col gap-4 w-full py-4">
-				<Input
-					name="title"
-					placeholder="Todo"
-					value={title}
-					onChange={handleChange}
-				/>
-				<Input
-					name="description"
-					placeholder="Description"
-					value={description as string}
-					onChange={handleChange}
-				/>
-				<Input
-					type="date"
-					name="dueDate"
-					value={new Date(dueDate).toISOString().split("T")[0]}
-					className="pr-2"
-					placeholder="Due Date"
-					onChange={handleChange}
-				/>
-				<div className="flex gap-2 justify-end">
-					<Button onClick={onClose} variant="outline">
-						Cancel
-					</Button>
-					<Button disabled={isSubmitBtnDisabled} onClick={handleSubmit}>
-						{confirmButtonLabel}
-					</Button>
-				</div>
-			</form>
-		</Modal>
+		<form className="flex flex-col gap-4 w-full py-4">
+			<Input
+				name="title"
+				placeholder="Todo"
+				value={title}
+				onChange={handleChange}
+			/>
+			<Input
+				name="description"
+				placeholder="Description"
+				value={description as string}
+				onChange={handleChange}
+			/>
+			<Input
+				type="date"
+				name="dueDate"
+				value={new Date(dueDate).toISOString().split("T")[0]}
+				className="pr-2"
+				placeholder="Due Date"
+				onChange={handleChange}
+			/>
+			<div className="flex gap-2 justify-end">
+				<Button onClick={closeModal} variant="outline">
+					Cancel
+				</Button>
+				<Button disabled={isSubmitBtnDisabled} onClick={handleSubmit}>
+					{confirmButtonLabel}
+				</Button>
+			</div>
+		</form>
 	);
 };
 
-export default TodoFormModal;
+export default TodoForm;
