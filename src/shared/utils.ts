@@ -15,9 +15,3 @@ export const addIdAndStatus = (todo: Omit<Todo, "id" | "status">) => {
 		status: "todo" as TodoStatus,
 	};
 };
-
-export const handleStopPropagation =
-	(e: React.MouseEvent<HTMLDivElement>) => (fn: () => void) => {
-		e.stopPropagation();
-		fn();
-	};
