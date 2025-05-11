@@ -13,24 +13,26 @@ const UpdateTodo = ({ oldTodo }: Props) => {
 	const { editTodoFn } = useTodos();
 	const { id, status, ...restTodo } = oldTodo;
 	return (
-		<>
-			<Pencil
-				size={18}
-				className="cursor-pointer hover:scale-105"
-				onClick={(e) => {
-					e.stopPropagation();
-					setShowModal(true);
-				}}
-			/>
-			<TodoFormModal
-				isOpen={showModal}
-				onClose={() => setShowModal(false)}
-				initialData={restTodo}
-				modalTitle="Update Todo"
-				confirmButtonLabel="Update"
-				onSubmit={(todo) => editTodoFn({ ...todo, status, id })}
-			/>
-		</>
+		status !== "done" && (
+			<>
+				<Pencil
+					size={18}
+					className="cursor-pointer hover:scale-105"
+					onClick={(e) => {
+						e.stopPropagation();
+						setShowModal(true);
+					}}
+				/>
+				<TodoFormModal
+					isOpen={showModal}
+					onClose={() => setShowModal(false)}
+					initialData={restTodo}
+					modalTitle="Update Todo"
+					confirmButtonLabel="Update"
+					onSubmit={(todo) => editTodoFn({ ...todo, status, id })}
+				/>
+			</>
+		)
 	);
 };
 

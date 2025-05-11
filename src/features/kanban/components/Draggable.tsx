@@ -1,11 +1,11 @@
 import { useDraggable } from "@dnd-kit/core";
 import type { Todo } from "../../../shared/types";
+import { TodoCard } from "../../todos/components";
 
 type Props = {
 	todo: Todo;
-	children: React.ReactNode;
 };
-const Draggable = ({ todo, children }: Props) => {
+const Draggable = ({ todo }: Props) => {
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
 		id: todo.id,
 		data: todo,
@@ -16,14 +16,8 @@ const Draggable = ({ todo, children }: Props) => {
 		  }
 		: undefined;
 	return (
-		<div
-			ref={setNodeRef}
-			style={style}
-			{...listeners}
-			{...attributes}
-			className="cursor-grab"
-		>
-			{children}
+		<div ref={setNodeRef} style={style} className="cursor-grab">
+			<TodoCard todo={todo} listeners={listeners} attributes={attributes} />
 		</div>
 	);
 };
