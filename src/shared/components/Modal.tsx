@@ -1,6 +1,6 @@
 import { X } from "lucide-react"; // Or any close icon
 import { useEffect } from "react";
-
+import { createPortal } from "react-dom";
 export const Modal = ({
 	isOpen,
 	onClose,
@@ -20,11 +20,11 @@ export const Modal = ({
 
 	if (!isOpen) return null;
 
-	return (
+	return createPortal(
 		<div
 			className={`fixed inset-0 z-50 ${
 				isOpen ? "flex" : "none"
-			} items-center justify-center `}
+			} items-center justify-center  isolate`}
 		>
 			<div
 				className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
@@ -40,7 +40,8 @@ export const Modal = ({
 				</button>
 				<div className="p-6">{children}</div>
 			</div>
-		</div>
+		</div>,
+		document.body
 	);
 };
 

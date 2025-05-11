@@ -21,11 +21,11 @@ const TodoCard = ({ todo, listeners, attributes }: Props) => {
 				</span>
 			</div>
 			<div
-				className="w-full h-full absolute opacity-0 top-0 left-0 z-10"
+				className="w-full h-full absolute inset-0 z-0 opacity-0"
 				{...listeners}
 				{...attributes}
 			></div>
-			<div className="flex gap-2 mt-2 z-50">
+			<div className="flex gap-2 mt-2 z-10">
 				<DeleteTodo id={todo.id} title={todo.title} />
 				<UpdateTodo oldTodo={todo} />
 				<UpdateTodoStatus id={todo.id} status={todo.status} />

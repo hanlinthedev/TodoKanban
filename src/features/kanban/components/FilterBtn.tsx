@@ -43,10 +43,7 @@ const FilterBtn = ({ onClick }: Props) => {
 				className="cursor-pointer hover:scale-105 text-gray-600"
 			/>
 			{isOpen && (
-				<div
-					className="absolute -left-[50%] text-sm shadow-md mt-2 w-40 z-10"
-					onBlurCapture={() => setIsOpen(false)}
-				>
+				<div className="absolute -left-48 text-sm shadow-md mt-2 w-48 z-40 bg-white rounded-lg p-2 cursor-pointer">
 					<div
 						className="px-4 py-2 flex gap-2 bg-gray-100 hover:bg-gray-200 rounded-xl mb-1 text-sm justify-center items-center"
 						onClick={() => handleClick("dueDateAsc")}
